@@ -36,18 +36,16 @@ def car_position(img):
 def graph(times, poses):
     plt.figure(num='Racecar Phyics Lab')
 
-    pos_spl = scipy.interpolate.UnivariateSpline(times, poses, k=2)
+    pos_spl = scipy.interpolate.UnivariateSpline(times, poses, k=1)
     plt.subplot(1, 2, 1)
     plt.plot(times, pos_spl(times))
     plt.title('Position (m) vs. Time (s)')
 
-    assert len(times) == len(poses)
-    vel_spl = pos_spl.derivative(1)
+    vel_spl = pos_spl.derivative()
     plt.subplot(1, 2, 2)
     plt.title('Velocity(m/s) vs Time(s)')
     plt.plot(times, vel_spl(times))
 
-    plt.minorticks_on()
     plt.ylim(ymin=0)
 
     plt.show()
@@ -75,9 +73,9 @@ def main():
         time_val = time.time() - start_time
 
         # filters waiting time and drop at end
-        if time_val > 4.53:
+        if time_val > 4.3:
             break
-        elif time_val > 3.4:
+        elif time_val > 3.3:
             times.append(time_val)
             poses.append(pixels_to_meters(pos))
 
