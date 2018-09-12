@@ -14,7 +14,7 @@ def pixels_to_meters(pixels):
 
 def car_position(img):
     rows, cols, _ = img.shape
-    img_resized = img[int(0.5 * rows):int(0.7 * rows), int(0.07 * cols):]
+    img_resized = img[int(0.5 * rows):int(0.7 * rows), int(0.02 * cols):]
 
     img_hsv = cv2.cvtColor(img_resized, cv2.COLOR_RGB2HSV)
     mask = cv2.inRange(img_hsv, lower_hsv_range, upper_hsv_range)
@@ -73,7 +73,7 @@ def main():
         time_val = time.time() - start_time
 
         # filters waiting time and drop at end
-        if time_val > 4.3:
+        if time_val > 4.4:
             break
         elif time_val > 3.3:
             times.append(time_val)
