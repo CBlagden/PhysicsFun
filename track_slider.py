@@ -96,7 +96,9 @@ class ObjectTracker:
             x, y, w, h = cv2.boundingRect(c)
             area = abs(w*h)
             if area > self.min_area:
-                cv2.rectangle(img_resized, (x, y), (x + w, y + h), color=(0, 0, 255), thickness=1)
+                cv2.rectangle(img_resized, (x, y), 
+                (x + w, y + h), 
+                color=(0, 0, 255), thickness=1)
             else:
                 x = None
 
